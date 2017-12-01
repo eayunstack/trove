@@ -1173,7 +1173,7 @@ class Instance(BuiltInstance):
         elif (self.db_info.task_status != InstanceTasks.NONE and
               self.db_info.task_status != InstanceTasks.RESTART_REQUIRED):
             status_type = 'task'
-            status = self.db_info.task_status
+            status = self.db_info.task_status.action
         elif not self.datastore_status.status.action_is_allowed:
             status = self.status
         elif Backup.running(self.id):
@@ -1183,7 +1183,7 @@ class Instance(BuiltInstance):
             return
 
         msg = (_("Instance %(instance_id)s is not currently available for an "
-                 "action to be performed (%(status_type)s status was "
+                 "action to be performed (%(status_type)s status is "
                  "%(action_status)s).") % {'instance_id': self.id,
                                            'status_type': status_type,
                                            'action_status': status})
