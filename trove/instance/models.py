@@ -842,7 +842,7 @@ class Instance(BuiltInstance):
 
         if backup_id and cluster_config is None:
             call_args['backup_id'] = backup_id
-            Backup.validate_backup_info(context, datastore, backup_id,
+            Backup.validate_for_restore(context, datastore, backup_id,
                                         target_size)
 
         if slave_of_id:
